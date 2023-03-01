@@ -1,0 +1,23 @@
+
+
+@media screen and (min-width: 1501px) {
+    .app-container {
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        padding-top: 5%;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .app-container {
+        display: grid;
+        grid-template-columns: 15% 70% 15%;
+        padding-top: 5%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .app-container {
+        display: grid;
+        grid-template-columns: 5% 90% 5%;
+        padding-top: 5%;
+    }
+}

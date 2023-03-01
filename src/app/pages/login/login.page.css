@@ -1,0 +1,95 @@
+
+
+@media screen and (min-width: 1501px) {
+    .login-input {
+        width: 55%;
+        height: 80px;
+        border-radius: 80px;
+        border: solid 10px rgb(23, 102, 98);
+        font-size: 1.8rem;
+    }
+    .login-image img {
+        width: 500px;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .login-input {
+        width: 65%;
+        height: 70px;
+        border-radius: 60px;
+        border: solid 8px rgb(23, 102, 98);
+        font-size: 1.6rem;
+    }
+    .login-image img {
+        width: 400px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .login-input {
+        width: 100%;
+        height: 60px;
+        border-radius: 45px;
+        border: solid 5px rgb(23, 102, 98);
+        font-size: 1.4rem;
+    }
+    .login-image img {
+        width: 250px;
+    }
+    .login-page-container {
+        padding-top: 30%;
+    }
+}
+
+
+.login-page-container {
+    grid-column: 2;
+    width: 100%;
+    min-height: 50vh;
+}
+
+.login-image {
+    display: flex;
+    justify-content: center;
+}
+
+.login-input-container {
+    display: flex;
+    justify-content: center;
+}
+.login-input {
+    outline: none;
+    text-align: center;
+}
+
+.login-button-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+.login-button {
+    width: 175px;
+    height: 55px;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to left, #41a4bd, #284583);
+    transition: all .1s ease-in-out;
+}
+.login-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    background: linear-gradient(to right, #a7e6e6, #6393ca);
+}
+.login-button img {
+    width: 50px;
+}
+.login-button span {
+    margin: auto;
+    padding-bottom: 2%;
+    padding-left: 15%;
+}
