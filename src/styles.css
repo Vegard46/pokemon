@@ -3,5 +3,7 @@ body {
     background: linear-gradient(#7fe287, #288383);
     min-height: 100vh;
     margin: 0;
-    font-family: 'IBM Plex Sans Condensed', 'Noto Sans' !important;
+}
+body * {
+    font-family: 'IBM Plex Sans', 'Noto Sans';
 }

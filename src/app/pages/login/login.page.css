@@ -59,6 +59,10 @@
 .login-input {
     outline: none;
     text-align: center;
+    font-weight: bold;
+}
+.login-input::placeholder {
+    opacity: .7;
 }
 
 .login-button-container {
