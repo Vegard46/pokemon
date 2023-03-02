@@ -4,10 +4,10 @@
         <img src="assets/pokelogo_1.png" alt="pokemon-logo">
     </div>
     <div class="login-input-container">
-        <input class="login-input" placeholder="What is your Trainer name?">
+        <input #loginInput class="login-input" placeholder="What is your Trainer name?">
     </div>
     <div class="login-button-container">
-        <button class="login-button">
+        <button (click)="loginSubmit(loginInput.value)" class="login-button">
             <span>Go</span>
             <img src="assets/pokeball.png" alt="pokeball">
         </button>
