@@ -3,65 +3,10 @@
         <h1>Your collection</h1>
     </div>
     <div class="pokemon-collection">
-        <div class="single-collected-pokemon">
+        <div class="single-collected-pokemon" *ngFor="let pokemon of collection">
             <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
-        </div>
-        <div class="single-collected-pokemon">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
-            <p>Pokemon Name</p>
-            <img src="assets/pokeball.png">
+            <p>{{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}}</p>
+            <img src={{pokemon.avatar}}>
         </div>
     </div>
 </div>
