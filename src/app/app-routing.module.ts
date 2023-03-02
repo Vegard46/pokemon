@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthLoggedInGuard } from './guards/auth-logged-in.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { LoginPage } from './pages/login/login.page';
 import { TrainerPage } from './pages/trainer/trainer.page';
@@ -12,15 +14,18 @@ const routes: Routes = [
   },
   {
     path: "login",
-    component: LoginPage
+    component: LoginPage,
+    canActivate: [ AuthLoggedInGuard ]
   },
   {
     path: "catalogue",
-    component: CataloguePage
+    component: CataloguePage,
+    canActivate: [ AuthGuard ]
   },
   {
     path: "trainer",
-    component: TrainerPage
+    component: TrainerPage,
+    canActivate: [ AuthGuard ]
   }
 ];
 
