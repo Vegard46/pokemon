@@ -3,8 +3,8 @@
         <h1>Pokemon Collection</h1>
     </div>
     <div class="pokemon-collection">
-        <div class="single-collected-pokemon" *ngFor="let pokemon of catalogue">
-            <button><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div [ngStyle]="{'opacity': (_pokemonUtil.isAlreadyCollected(pokemon)) ? '.5' : '1'}" class="single-collected-pokemon" *ngFor="let pokemon of catalogue">
+            <button *ngIf="!_pokemonUtil.isAlreadyCollected(pokemon)"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <img src={{pokemon.avatar}}>
             <p>{{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}}</p>
         </div>
