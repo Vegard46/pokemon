@@ -4,7 +4,7 @@
     </div>
     <div class="pokemon-collection">
         <div class="single-collected-pokemon" *ngFor="let pokemon of collection">
-            <button><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button (click)="removePokemonSubmit(pokemon)"><i class="fa fa-times" aria-hidden="true"></i></button>
             <p>{{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}}</p>
             <img src={{pokemon.avatar}}>
         </div>

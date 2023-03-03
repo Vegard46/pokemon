@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageKeys } from 'src/app/enums/storage-keys.enum';
 import { Pokemon } from 'src/app/models/pokemon.model';
+import { User } from 'src/app/models/user.model';
 import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.service';
 import { PokemonUtil } from 'src/app/utils/pokemon.util';
+import { StorageUtil } from 'src/app/utils/storage.util';
 
 @Component({
   selector: 'app-catalogue',
@@ -32,6 +35,17 @@ export class CataloguePage implements OnInit {
 
   ngOnInit(): void {
     this.pokemonCatalogueService.findAllPokemon();
+  }
+
+  public addPokemonSubmit(pokemon: Pokemon): void {
+    this.pokemonCatalogueService.addPokemon(pokemon)
+      .subscribe({
+        next: (user: User) => {
+          StorageUtil.save(StorageKeys.User, user);
+        },
+        error: () => {
+        }
+      })
   }
 
 }

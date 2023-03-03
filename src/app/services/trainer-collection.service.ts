@@ -1,12 +1,14 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { StorageKeys } from '../enums/storage-keys.enum';
 import { Pokemon } from '../models/pokemon.model';
 import { User } from '../models/user.model';
+import { StorageUtil } from '../utils/storage.util';
 import { UserService } from './user.service';
 
-const { API_URL } = environment;
+const { API_URL, API_KEY } = environment;
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +38,12 @@ export class TrainerCollectionService {
 
   public findAllPokemon(): void {
     this._loading = true;
-    this.http.get<User[]>(`${API_URL}?username=${this.userService.user?.username}`)
+
+    const headers = {
+      "Cache-Control": "no-cache"
+    }
+
+    this.http.get<User[]>(`${API_URL}?username=${this.userService.user?.username}`, { headers })
       .pipe(
         finalize(() => {
           this._loading = false;
@@ -45,7 +52,8 @@ export class TrainerCollectionService {
       .subscribe({
         next: (users: User[]) => {
           let user = users.pop();
-          
+          console.log(user?.pokemon);
+          console.log(StorageUtil.read(StorageKeys.User))
           this._collection = user!.pokemon;
         },
         error: (error: HttpErrorResponse) => {
@@ -53,4 +61,24 @@ export class TrainerCollectionService {
         }
       })
   }
+
+  public removePokemon(pokemon: Pokemon): Observable<User> {
+    let user: User | undefined = StorageUtil.read(StorageKeys.User);
+    
+    let index = -1;
+    user?.pokemon.forEach((pkmon, i) => {
+      if(pkmon.name === pokemon.name){
+        index = i;
+      }
+    });
+
+    if(index >= 0){user!.pokemon.splice(index, 1);}
+
+    const headers = new HttpHeaders({
+      "content-type": "application/json",
+      "x-api-key": API_KEY
+    });
+    return this.http.patch<User>(`${API_URL}/${user!.id}`, user, { headers })
+  }
+
 }

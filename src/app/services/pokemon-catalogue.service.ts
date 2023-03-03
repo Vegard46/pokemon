@@ -1,11 +1,14 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { StorageKeys } from '../enums/storage-keys.enum';
 import { PokemonPublic, PokemonPublicSingle } from '../models/pokemon-public.model';
 import { Pokemon } from '../models/pokemon.model';
+import { User } from '../models/user.model';
+import { StorageUtil } from '../utils/storage.util';
 
-const { POKEMON_API_URL } = environment
+const { POKEMON_API_URL, API_KEY, API_URL } = environment
 const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 const pageSize = 18;
 
@@ -55,6 +58,16 @@ export class PokemonCatalogueService {
           this._error = error.message;
         }
       })
+  }
+
+  public addPokemon(pokemon: Pokemon): Observable<User> {
+    let user: User | undefined = StorageUtil.read(StorageKeys.User);
+    user!.pokemon.push(pokemon);
+    const headers = new HttpHeaders({
+      "content-type": "application/json",
+      "x-api-key": API_KEY
+    })
+    return this.http.patch<User>(`${API_URL}/${user!.id}`, user, { headers })
   }
 
 }
