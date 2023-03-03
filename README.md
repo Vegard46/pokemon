@@ -24,19 +24,19 @@ The purpose of the assignment was to utilize the Angluar framework to build an a
 ## Structure
 - app
   - components
-    Singular components
+    - Singular components
   - enums
-    Enumerated values
+    - Enumerated values
   - guards
-    Authentication guard components for restricting access to certain routes
+    - Authentication guard components for restricting access to certain routes
   - models
-    Defined models of tytpescript objects that are received and used in the app
+    - Defined models of tytpescript objects that are received and used in the app
   - pages
-    Page-components comprised of html, css and typescript for individual pages of the application
+    - Page-components comprised of html, css and typescript for individual pages of the application
   - services
-    Services mainly handling business logic in the form of API communication
+    - Services mainly handling business logic in the form of API communication
   - utils
-    Utility classes and functions providing extra functionality needed
+    - Utility classes and functions providing extra functionality needed
 - assets
   - Raw assets like images used in the application
 
