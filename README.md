@@ -1,27 +1,55 @@
-# Pokemon
+# Noroff: Front End Assignment 3 - Angular Pokemon Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+## Purpose
+The purpose of the assignment was to utilize the Angluar framework to build an application that communicates with the public PokeAPI to interact with a collection of pokemon that can be "caught" and added to a personal collection/pokedex.
 
-## Development server
+## Technologies
+- Language
+  - TypeScript, HTML and CSS
+- Framework
+  - Angular CLI
+- Server
+  - Simple JSON server with single db.json file
+- Deployment & Hosting
+  - Server
+    - Railway
+  - Angular application
+    - Vercel
+- Extra
+  - Fontawesome Icons by Twitter
+- Created with
+  - VSCode (Development environment)
+  - Figma (Design)
+  
+## Structure
+- app
+  - components
+    - Singular components
+  - enums
+    - Enumerated values
+  - guards
+    - Authentication guard components for restricting access to certain routes
+  - models
+    - Defined models of tytpescript objects that are received and used in the app
+  - pages
+    - Page-components comprised of html, css and typescript for individual pages of the application
+  - services
+    - Services mainly handling business logic in the form of API communication
+  - utils
+    - Utility classes and functions providing extra functionality needed
+- assets
+  - Raw assets like images used in the application
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- component-tree-figma.pdf
+  - Component tree model showing the general structure and relationships of the components used in the application
+  
+## Run
+Clone this repository and run the following commands in the root directory:
+```
+npm install
+npm start
+```
+Afterwards, open any browser and access the url "localhost:4200"
+### Creator 
+Vegard46 (Vegard Andersson)
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
