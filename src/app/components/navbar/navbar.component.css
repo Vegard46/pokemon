@@ -1,0 +1,40 @@
+
+.navbar-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px 20px 0 0;
+    background: linear-gradient(to left, #41bd83, #288359);
+    border-radius: 25px;
+}
+.nav-right {
+    border-radius: 0 25px 25px 0;
+}
+.nav-left {
+    border-radius: 25px 0 0 25px;
+}
+
+
+.nav-button {
+    width: 55px;
+    height: 55px;
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    color: rgb(216, 248, 243);
+    transition: all ease-in-out .1s;
+}
+.nav-negative {
+    background-color: rgb(165, 62, 54);
+}
+.nav-default:hover {
+    background-color: white;
+    color: #288359;
+    cursor: pointer;
+}
+.nav-negative:hover {
+    background-color: white;
+    color: rgb(165, 62, 54);
+    cursor: pointer;
+}

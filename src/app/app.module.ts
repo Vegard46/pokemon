@@ -8,13 +8,15 @@ import { LoginPage } from './pages/login/login.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { TrainerPage } from './pages/trainer/trainer.page';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPage,
     CataloguePage,
-    TrainerPage
+    TrainerPage,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

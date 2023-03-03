@@ -1,0 +1,5 @@
+<nav *ngIf="router.url !== '/login'" class="navbar-container">
+    <button routerLink="/trainer" class="nav-button nav-default nav-left"><i class="fa fa-bookmark" aria-hidden="true"></i></button>
+    <button routerLink="/catalogue" class="nav-button nav-default"><i class="fa fa-archive" aria-hidden="true"></i></button>
+    <button routerLink="/login" (click)="logout()" class="nav-button nav-negative nav-right"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>
+</nav>
