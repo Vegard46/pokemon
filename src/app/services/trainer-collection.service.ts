@@ -36,9 +36,17 @@ export class TrainerCollectionService {
     private readonly http: HttpClient
   ) { }
 
+  /**
+   * Retrieves the user and sets the collection to the retrieved
+   * user's collection of pokemon
+   */
   public findAllPokemon(): void {
     this._loading = true;
 
+    // Because of some unwanted behaviour of the caching of some browsers,
+    // this header is set to force the request to bypass the cache and retrieve fresh values
+    // as sometimes the request would retrieve the cached values even though the server-side values
+    // had changed.
     const headers = {
       "Cache-Control": "no-cache"
     }
@@ -52,8 +60,6 @@ export class TrainerCollectionService {
       .subscribe({
         next: (users: User[]) => {
           let user = users.pop();
-          console.log(user?.pokemon);
-          console.log(StorageUtil.read(StorageKeys.User))
           this._collection = user!.pokemon;
         },
         error: (error: HttpErrorResponse) => {
@@ -62,16 +68,26 @@ export class TrainerCollectionService {
       })
   }
 
+  /**
+   * Removes a pokemon form a users collection by patching the user 
+   * with a new collection array
+   * @param pokemon The pokemon object to be removed
+   * @returns The user after patching
+   */
   public removePokemon(pokemon: Pokemon): Observable<User> {
     let user: User | undefined = StorageUtil.read(StorageKeys.User);
     
     let index = -1;
     user?.pokemon.forEach((pkmon, i) => {
+      // We identify the correct index of the pokemon to be removed by its name.
+      // indexOf(object) could have been used here instead of a foreach,
+      // but for some reason it did not work
       if(pkmon.name === pokemon.name){
         index = i;
       }
     });
 
+    // If the pokemon exists, we remove it and then patch with the new, reduced collection
     if(index >= 0){user!.pokemon.splice(index, 1);}
 
     const headers = new HttpHeaders({

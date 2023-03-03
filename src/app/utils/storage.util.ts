@@ -1,4 +1,7 @@
 
+/* 
+Utility class for communication with sessionStorage
+*/
 export class StorageUtil {
     public static save<T>(key: string, value: T): void{
         sessionStorage.setItem(key, JSON.stringify(value));

@@ -13,6 +13,13 @@ export class AuthLoggedInGuard implements CanActivate {
     private readonly userService: UserService
   ) { }
 
+  /**
+   * Will redirect the user to the trainer page if the user is already logged in
+   * preventing the user from accessing the login page without logging out
+   * @param route 
+   * @param state 
+   * @returns Boolean value based on if the user is logged in or not
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

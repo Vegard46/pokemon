@@ -13,6 +13,13 @@ export class AuthGuard implements CanActivate {
     private readonly userService: UserService
   ) { }
 
+  /**
+   * Will redirect the user to the login page if no user is found
+   * in the sessionStorage (user is not "logged in")
+   * @param route 
+   * @param state 
+   * @returns Boolean value based on if the user is logged in or not
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

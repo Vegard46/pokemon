@@ -25,14 +25,23 @@ export class TrainerPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // On initialization, we populate the component with the user's
+    // collection of pokemon
     this.trainerCollectionService.findAllPokemon();
   }
 
+  /**
+   * On submit of the remove-button of a specific pokemon,
+   * we remove it from the user's collection
+   * @param pokemon 
+   */
   public removePokemonSubmit(pokemon: Pokemon): void {
     this.trainerCollectionService.removePokemon(pokemon)
       .subscribe({
         next: (user: User) => {
+          // We make sure the current session storage of the user is up to date
           StorageUtil.save(StorageKeys.User, user);
+          // We retrieve the pokemon again to ensure that the component updates
           this.trainerCollectionService.findAllPokemon();
         },
         error: () => {

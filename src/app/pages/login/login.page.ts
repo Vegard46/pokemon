@@ -17,6 +17,11 @@ export class LoginPage {
     private readonly userService: UserService
   ) { }
 
+  /**
+   * On submit of the login button we call the login method of the service
+   * that either logs in or creates a new user based on the inputted username
+   * @param username The username of the user retrieved from the component input
+   */
   public loginSubmit(username: string): void {
     console.log(username);
     this.loginService.login(username)

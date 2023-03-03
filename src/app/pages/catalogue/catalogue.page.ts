@@ -6,7 +6,9 @@ import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.serv
 import { PokemonUtil } from 'src/app/utils/pokemon.util';
 import { StorageUtil } from 'src/app/utils/storage.util';
 
+// Total pokemon currently in the PokeAPI
 const totalPokemon = 1279;
+// Custom amount of objects to be displayed on a single page
 const pageSize = 18;
 
 @Component({
@@ -16,7 +18,12 @@ const pageSize = 18;
 })
 export class CataloguePage implements OnInit {
 
+  // Reference to the pokemon util class to make it accessible to
+  // the template during runtime
   _pokemonUtil: PokemonUtil;
+
+  // What page we are currently on, used to calculate the offset when requesting
+  // new pokemon from the PokeAPI
   _pageNumber: number;
 
   get catalogue(): Pokemon[] {
@@ -47,9 +54,15 @@ export class CataloguePage implements OnInit {
   }
 
   ngOnInit(): void {
+    // On initialization, we fetch the pokemon based on the current page
     this.pokemonCatalogueService.findAllPokemon(pageSize, this._pageNumber-1);
   }
 
+  /**
+   * On submit of the add-pokemon button, we add the pokemon
+   * to the user's collection and save the user to update the session storage
+   * @param pokemon 
+   */
   public addPokemonSubmit(pokemon: Pokemon): void {
     this.pokemonCatalogueService.addPokemon(pokemon)
       .subscribe({
@@ -61,6 +74,13 @@ export class CataloguePage implements OnInit {
       })
   }
 
+  /**
+   * When pressing either browse button (left or right), the pagenumber
+   * is reduced or increased by 1 to move through the pages and load new
+   * pokemon accordingly
+   * @param direction Either 1 or -1 based on what browse button (left or right) was clicked
+   * @returns Nothing
+   */
   public browsePage(direction: number){
     if((this._pageNumber + direction) < 1 || (this._pageNumber + direction) > Math.ceil(totalPokemon/pageSize)){
       return;

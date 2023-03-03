@@ -15,6 +15,7 @@ export class LoginService {
   constructor(private readonly http: HttpClient) { }
 
   public login(username: string): Observable<User> {
+    // We check if the user exists and if not, we create it
     return this.checkIfUserExists(username)
       .pipe(
         switchMap((user: User | undefined) => {

@@ -36,8 +36,16 @@ export class PokemonCatalogueService {
     private readonly http: HttpClient
   ) { }
 
+  /**
+   * Retrieves a set of pokemon from the PokeAPI and
+   * converts them to Pokemon objects
+   * @param pageSize The amount of objects that should be displayed/retrieved 
+   *                  for a single page
+   * @param offset  The page-number which is used to calculate the offset of the request
+   */
   public findAllPokemon(pageSize: number, offset: number): void {
     this._loading = true;
+    // The offset of the request to the PokeAPI is the offset(pageNumber) multiplied by the size of the page
     this.http.get<PokemonPublic>(`${POKEMON_API_URL}?limit=${pageSize}&offset=${offset*pageSize}`)
       .pipe(
         finalize(() => {
@@ -46,8 +54,11 @@ export class PokemonCatalogueService {
       )
       .subscribe({
         next: (response: PokemonPublic) => {
-          console.log(response.results);
+          // We convert the response into Pokemon model objects by assigning them their
+          // corresponding images based on the id of the pokemon retreived
           this._catalogue = response.results.map((pokemon: PokemonPublicSingle) => {
+            // The pokemon id used to identify the correct image is extracted
+            // from the url of the single pokemon resource in the PokeAPI
             let id = pokemon.url.split("/")[6];
             let img = imgUrl + id + ".png";
             return {"name": pokemon.name, "avatar": img};
@@ -59,8 +70,15 @@ export class PokemonCatalogueService {
       })
   }
 
+  /**
+   * Adds a pokemon to the user's collection of pokemon and
+   * patches the user
+   * @param pokemon The pokemon to be added
+   * @returns The user after it has been patched
+   */
   public addPokemon(pokemon: Pokemon): Observable<User> {
     let user: User | undefined = StorageUtil.read(StorageKeys.User);
+    // We simply add the pokemon to the user's collection before patching
     user!.pokemon.push(pokemon);
     const headers = new HttpHeaders({
       "content-type": "application/json",

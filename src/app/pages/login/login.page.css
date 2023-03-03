@@ -1,5 +1,5 @@
 
-
+/* Specific css based on screen size to make it responsive */
 @media screen and (min-width: 1501px) {
     .login-input {
         width: 55%;

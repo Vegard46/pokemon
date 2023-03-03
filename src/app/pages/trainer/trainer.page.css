@@ -1,5 +1,5 @@
 
-
+/* Specific css based on screen size to make it responsive */
 @media screen and (min-width: 1501px) {
     .single-collected-pokemon p {
         font-size: 1.5rem;

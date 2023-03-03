@@ -20,6 +20,10 @@ export class NavbarComponent {
     private readonly userService: UserService
   ) { }
 
+  /**
+   * Logs the user out by deleting the user from the sessionStorage as
+   * the userService to trigger an authGuard which will redirect to the login page
+   */
   public logout(): void {
     StorageUtil.delete(StorageKeys.User);
     this.userService.user = undefined;
