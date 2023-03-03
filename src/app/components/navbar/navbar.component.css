@@ -6,6 +6,7 @@
     margin: 20px 20px 0 0;
     background: linear-gradient(to left, #41bd83, #288359);
     border-radius: 25px;
+    z-index: 10;
 }
 .nav-right {
     border-radius: 0 25px 25px 0;

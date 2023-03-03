@@ -10,7 +10,6 @@ import { StorageUtil } from '../utils/storage.util';
 
 const { POKEMON_API_URL, API_KEY, API_URL } = environment
 const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
-const pageSize = 18;
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +36,9 @@ export class PokemonCatalogueService {
     private readonly http: HttpClient
   ) { }
 
-  public findAllPokemon(): void {
+  public findAllPokemon(pageSize: number, offset: number): void {
     this._loading = true;
-    this.http.get<PokemonPublic>(`${POKEMON_API_URL}?limit=${pageSize}`)
+    this.http.get<PokemonPublic>(`${POKEMON_API_URL}?limit=${pageSize}&offset=${offset*pageSize}`)
       .pipe(
         finalize(() => {
           this._loading = false;

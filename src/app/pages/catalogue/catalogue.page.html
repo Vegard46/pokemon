@@ -1,6 +1,11 @@
 <div class="catalogue-page-container">
     <div class="catalogue-page-header">
-        <h1>Pokemon Collection</h1>
+        <h1>Pokemon</h1>
+        <div class="browse-container">
+            <button (click)="browsePage(-1)" class="browse-button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+            <span>{{pageNumber}}</span>
+            <button (click)="browsePage(1)" class="browse-button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+        </div>
     </div>
     <div class="pokemon-collection">
         <div [ngStyle]="{'opacity': (_pokemonUtil.isAlreadyCollected(pokemon)) ? '.5' : '1'}" class="single-collected-pokemon" *ngFor="let pokemon of catalogue">

@@ -67,6 +67,7 @@
 .catalogue-page-header {
     border-bottom: solid 3px #832b28;
     display: flex;
+    justify-content: space-between;
 }
 .catalogue-page-header h1 {
     background: linear-gradient(to left, #bd4541, #832b28);
@@ -74,7 +75,38 @@
     display: inline-block;
     padding: 1% 3% 1% 3%;
     border-radius: 25px 25px 0 0;
-    margin: 0 auto 0 auto;
+    margin: 0;
+}
+
+.browse-container {
+    display: flex;
+    margin: auto 0 auto 0;
+}
+.browse-button {
+    background: linear-gradient(to left, #bd4541, #832b28);
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    color: white;
+    display: flex;
+    transition: ease-in-out .15s all;
+}
+.browse-button:hover {
+    background: white;
+    color: #832b28;
+    cursor: pointer;
+}
+.browse-button i {
+    margin: auto;
+}
+.browse-container span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 

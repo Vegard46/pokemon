@@ -6,6 +6,9 @@ import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.serv
 import { PokemonUtil } from 'src/app/utils/pokemon.util';
 import { StorageUtil } from 'src/app/utils/storage.util';
 
+const totalPokemon = 1279;
+const pageSize = 18;
+
 @Component({
   selector: 'app-catalogue',
   templateUrl: './catalogue.page.html',
@@ -14,6 +17,7 @@ import { StorageUtil } from 'src/app/utils/storage.util';
 export class CataloguePage implements OnInit {
 
   _pokemonUtil: PokemonUtil;
+  _pageNumber: number;
 
   get catalogue(): Pokemon[] {
     return this.pokemonCatalogueService.catalogue;
@@ -27,14 +31,23 @@ export class CataloguePage implements OnInit {
     return this.pokemonUtil;
   }
 
+  get pageNumber(): number {
+    return this._pageNumber;
+  }
+
+  set pageNumber(num: number) {
+    this._pageNumber = num;
+  }
+
   constructor(
     private readonly pokemonCatalogueService: PokemonCatalogueService
   ) { 
     this._pokemonUtil = new PokemonUtil();
+    this._pageNumber = 1;
   }
 
   ngOnInit(): void {
-    this.pokemonCatalogueService.findAllPokemon();
+    this.pokemonCatalogueService.findAllPokemon(pageSize, this._pageNumber-1);
   }
 
   public addPokemonSubmit(pokemon: Pokemon): void {
@@ -46,6 +59,14 @@ export class CataloguePage implements OnInit {
         error: () => {
         }
       })
+  }
+
+  public browsePage(direction: number){
+    if((this._pageNumber + direction) < 1 || (this._pageNumber + direction) > Math.ceil(totalPokemon/pageSize)){
+      return;
+    }
+    this._pageNumber += direction;
+    this.pokemonCatalogueService.findAllPokemon(pageSize, this._pageNumber-1);
   }
 
 }
